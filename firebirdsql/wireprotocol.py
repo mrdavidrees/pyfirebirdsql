@@ -253,7 +253,7 @@ class WireProtocol(object):
 
     def bytes_to_ustr(self, b):
         "convert bytes array to unicode string"
-        return b.decode(charset_map.get(self.charset, self.charset))
+        return b.decode('utf_16')
 
     def _parse_status_vector(self):
         sql_code = 0
