@@ -248,12 +248,12 @@ class WireProtocol(object):
     def bytes_to_str(self, b):
         "convert bytes array to raw string"
         if PYTHON_MAJOR_VER == 3:
-            return b.decode(charset_map.get(self.charset, self.charset))
+            return b.decode('utf_16')
         return b
 
     def bytes_to_ustr(self, b):
         "convert bytes array to unicode string"
-        return b.decode('utf_16')
+        return b.decode(charset_map.get(self.charset, self.charset))
 
     def _parse_status_vector(self):
         sql_code = 0
