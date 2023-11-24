@@ -248,7 +248,12 @@ class WireProtocol(object):
     def bytes_to_str(self, b):
         "convert bytes array to raw string"
         if PYTHON_MAJOR_VER == 3:
-            return b.decode('cp1252')
+            try: 
+                aa = b.decode('cp1252')
+            except Exception as e:
+                print('Could not decode')
+                return 'null'
+            return aa
         return b
 
     def bytes_to_ustr(self, b):
