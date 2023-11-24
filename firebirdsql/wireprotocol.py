@@ -236,7 +236,7 @@ class WireProtocol(object):
             n -= len(b)
         if len(r) < nbytes:
             raise OperationalError('Can not recv() packets')
-        return r[:nbytes]
+        return r[:nbytes]``
 
     def str_to_bytes(self, s):
         "convert str to bytes"
@@ -245,10 +245,15 @@ class WireProtocol(object):
             return s.encode(charset_map.get(self.charset, self.charset))
         return s
 
-    def bytes_to_str(self, b):
+     def bytes_to_str(self, b):
         "convert bytes array to raw string"
         if PYTHON_MAJOR_VER == 3:
-            return b.decode('cp1252')
+            try: 
+                aa = b.decode('cp1252')
+            except Exception as e:
+                print('Could not decode')
+                return 'null'
+            return aa
         return b
 
     def bytes_to_ustr(self, b):
